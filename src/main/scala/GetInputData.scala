@@ -13,8 +13,8 @@ object GetInputData {
   def ConvertToBlackAndWhite(bufImg:Raster)={
     val width = bufImg.getWidth();val height = bufImg.getHeight();
     for(x <- 0 until width; y <- 0 until height) yield{
-    	val pixel = bufImg.getPixel(x, y, new Array[Int](3))
-        if (pixel(0) + pixel(1) + pixel(2) > 384) 1 
+    	val pixel = bufImg.getPixel(x, y, new Array[Int](1))
+        if (pixel(0) < 150) 1  //the magic number that seperates black from white
         else 0 	
     }
   }
