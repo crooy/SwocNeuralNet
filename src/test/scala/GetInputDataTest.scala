@@ -10,17 +10,23 @@ class GetInputDataTest extends FunSuite {
     assert(data.getWidth() == 1111)
   }
   test("Can read files into pixels"){
-    val data = GetInputData.ReadFile(getClass.getResource("/sun.png"))
+    val data = GetInputData.ReadFile(getClass.getResource("/sun.png")).getData()
     val pixels = GetInputData.ConvertToBlackAndWhite(data)
     //expecting 1111 x 1111 image
     assert(1111 * 1111 == pixels.length)
   }
   test("Can read files into pixels that are 1 or 0"){
-    val data = GetInputData.ReadFile(getClass.getResource("/sun.png"))
+    val data = GetInputData.ReadFile(getClass.getResource("/sun.png")).getData()
     val pixels = GetInputData.ConvertToBlackAndWhite(data)
     assert(pixels.forall(b => b == 0 || b == 1))
     assert(pixels.count(_ == 1) > 10) // assume that there are more than 10 black pixels
   }
 
+  test("Can read files into less pixels than it's original size"){
+    val data = GetInputData.ReadFile(getClass.getResource("/sun.png")).getData()
+    val pixels = GetInputData.ConvertToBlackAndWhite(data)
+    assert(pixels.forall(b => b == 0 || b == 1))
+    assert(pixels.count(_ == 1) > 10) // assume that there are more than 10 black pixels
+  }
 
 }

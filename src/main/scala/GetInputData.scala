@@ -7,8 +7,9 @@ object GetInputData {
   import java.awt.image._
  
   def ReadFile(file:URL)={
-	ImageIO.read(file).getData();
+	ImageIO.read(file)
   } 
+  
 
   def ConvertToBlackAndWhite(bufImg:Raster)={
     val width = bufImg.getWidth();val height = bufImg.getHeight();
